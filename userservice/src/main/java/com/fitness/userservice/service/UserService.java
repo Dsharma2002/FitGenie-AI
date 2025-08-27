@@ -8,7 +8,10 @@ import com.fitness.userservice.dto.UserResponse;
 import com.fitness.userservice.model.User;
 import com.fitness.userservice.repository.UserRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class UserService {
 
     @Autowired
@@ -52,6 +55,11 @@ public class UserService {
         userResponse.setUpdatedAt(user.getUpdatedAt());
 
         return userResponse;
+    }
+
+    public Boolean existByUserId(String id) {
+        log.info("Calling User Validation API for userId: {}", id);
+        return userRepository.existsById(id);
     }
 
 }
